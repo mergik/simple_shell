@@ -19,6 +19,23 @@
 extern char **environ;
 
 /**
+ * struct list - struct for singly linked list.
+ * @length: size of data string.
+ * @valueLength: size of string data.
+ * @string: data string.
+ * @value: string data value.
+ * @nextNode: pointer to the next node in the list.
+*/
+typedef struct list
+{
+	unsigned int length;
+	unsigned int valueLength;
+	char *string;
+	char *value;
+	struct list *nextNode;
+} list_n;
+
+/**
  * struct parameters - struct used to hold shell variables for a simple shell.
  * @argv: An array of pointers to the command-line arguments.
  * @input: A pointer to the input buffer.
@@ -45,16 +62,37 @@ typedef struct parameters
 	list_n *envn;
 } param;
 
+/**
+ * struct current_operation - a buildin function
+ * @name: buildin name
+ * @func: pointer to buildin function
+ */
+typedef struct current_operation
+{
+	char *cmd;
+	void (*func)(param *);
+} op_t;
+
 /*function prototypes*/
-param *initializeParameters(char **argv);
+param *initializeParameters(char **argv, char *env[]);
 void freeParameters(param *params);
+void freeNodeList(list_n *head);
 void printPrompt(void);
 int parseInput(param *params);
 char *searchPath(param *params);
 void execute(param *params);
-void builtIn(param *params);
 void printError(param *params, char *out);
 void intToString(int value, char *str);
+list_n *addNodeList(list_n **head, char *str, char *value);
+list_n *getNodeList(list_n *head, char *str);
+void (*myBuitIns(param *params))(param *);
+void _setenv(param *params);
+void _unsetenv(param *params);
+void _printenv(param *params);
+void printEnvList(list_n *head);
+int stringToInt(char *s);
+void EXIT(param *params);
+int numValidator(char *str);
 
 /* Prototypes of our custom functions */
 size_t _strlen(const char *str);
@@ -62,5 +100,6 @@ char *_strdup(const char *str);
 char *_strcat(char *dest, const char *src);
 char *_strcpy(char *dest, const char *src);
 int _strcmp(const char *s1, const char *s2);
+char *_strchr(char *str, char character);
 
 #endif

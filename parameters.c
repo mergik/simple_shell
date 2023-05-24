@@ -5,10 +5,11 @@
  * @argv: command line argument
  * Return: params on success
  */
-param *initializeParameters(char **argv)
+param *initializeParameters(char **argv, char *env[])
 {
 	unsigned int i;
 	param *params = malloc(sizeof(*params));
+	char *equal = NULL;
 
 	if (!params)
 		return (NULL);
@@ -36,6 +37,24 @@ param *initializeParameters(char **argv)
 	for (i = 0; i < params->argumentsNum; i++)
 		params->arguments[i] = NULL;
 
+	params->envn = NULL;
+	for (i = 0; env[i]; i++)
+	{
+		equal = _strchr(env[i], '=');
+		*equal = '\0';
+		params->envn = addNodeList(&(params->envn),
+					    env[i], equal + 1);
+		if (!(params->envn))
+		{
+			free(params->input);
+			free(params->arguments);
+			freeNodeList(params->envn);
+			free(params);
+			exit(-1);
+		}
+	}
+	params->alias = NULL;
+
 	return (params);
 }
 /**
@@ -50,8 +69,27 @@ void freeParameters(param *params)
 		free(params->input);
 	if (params->nextCommand)
 		free(params->nextCommand);
+	freeNodeList(params->envn);
+	freeNodeList(params->alias);
 	for (i = 0; params->arguments[i]; i++)
 		free(params->arguments[i]);
 	free(params->arguments);
 	free(params);
+}
+/**
+ * freeNodeList - frees the memory assigned to the linked list
+ * @head: pointer to head of the linked list
+ */
+void freeNodeList(list_n *head)
+{
+	list_n *ptr = head;
+
+	while (head != NULL)
+	{
+		ptr = head->nextNode;
+		free(head->string);
+		free(head->value);
+		free(head);
+		head = ptr;
+	}
 }
