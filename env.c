@@ -86,7 +86,7 @@ void _printenv(param *params)
 		char error_message[100];
 		int length = snprintf(error_message, sizeof(error_message), "env: %s: No such file or directory\n",
 			params->arguments[1]);
-		write(STDOUT_FILENO, error_message, length); // Use write instead of _printf
+		write(STDOUT_FILENO, error_message, length);
 		params->status = 2;
 		return;
 	}

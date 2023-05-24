@@ -6,7 +6,7 @@
  * @argv: argument list
  * Return: 0 if successful
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char *env[])
 {
 	int errCheck = -2, errStatus;
 	unsigned int i;
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
 	(void)argc;/*we declare argc to be unused*/
 
-	params = initializeParameters(argv);
+	params = initializeParameters(argv, env);
 	if (!params)
 		exit(-1);
 	signal(SIGINT, SIG_DFL);
