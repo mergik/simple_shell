@@ -3,6 +3,7 @@
 /**
  * initializeParameters - initialize params
  * @argv: command line argument
+ * @env: environment variable
  * Return: params on success
  */
 param *initializeParameters(char **argv, char *env[])
@@ -36,7 +37,6 @@ param *initializeParameters(char **argv, char *env[])
 	}
 	for (i = 0; i < params->argumentsNum; i++)
 		params->arguments[i] = NULL;
-
 	params->envn = NULL;
 	for (i = 0; env[i]; i++)
 	{
@@ -54,9 +54,9 @@ param *initializeParameters(char **argv, char *env[])
 		}
 	}
 	params->alias = NULL;
-
 	return (params);
 }
+
 /**
  * freeParameters - Frees memory allocated for the paramaters structure.
  * @params: pointer to parameters structure to free

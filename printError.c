@@ -64,29 +64,27 @@ void intToString(int value, char *str)
 }
 
 /**
- * _atoi - turn a str into an int
+ * stringToInt - turn a str into an int
  * @s: string to eval
  * Return: value of the first number in the string
  */
 int stringToInt(char *s)
 {
-    int value, tmp, len, multiplier = 1;
+	int value = 0, tmp = 0, len, multiplier = 1;
 
-    value = 0;
-    tmp = 0;
+	len = _strlen(s);
+	for (len = len - 1; len >= 0; len--)
+	{
+		tmp = value;
+		value = value + (s[len] - '0') * multiplier;
+		if (value < tmp || value > INT_MAX)
+			return (-1);
+		multiplier *= 10;
+	}
 
-    len = _strlen(s);
-    for (len = len - 1; len >= 0; len--)
-    {
-        tmp = value;
-        value = value + (s[len] - '0') * multiplier;
-        if (value < tmp || value > INT_MAX)
-            return (-1);
-        multiplier *= 10;
-    }
-
-    return (value);
+	return (value);
 }
+
 /**
  * numValidator - check if  the string is a valid number
  * @str: string input
@@ -94,11 +92,12 @@ int stringToInt(char *s)
  */
 int numValidator(char *str)
 {
-    while (*str)
-    {
-        if (*str > '9' || *str < '0')
-            return 0;
-        str++;
-    }
-    return (1);
+	while (*str)
+	{
+		if (*str > '9' || *str < '0')
+			return (0);
+		str++;
+	}
+
+	return (1);
 }

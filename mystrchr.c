@@ -8,16 +8,15 @@
  */
 char *_strchr(char *str, char character)
 {
-    int index = 0;
+	int index = 0;
 
-    do {
-        if (str[index] == character)
-            return (&str[index]);
-        index++;
-    } while (str[index] != '\0');
+	do {
+		if (str[index] == character)
+			return (&str[index]);
+		index++;
+	} while (str[index] != '\0');
+	if (character == '\0')
+		return (&str[index]);
 
-    if (character == '\0')
-        return (&str[index]);
-
-    return (0);
+	return (0);
 }

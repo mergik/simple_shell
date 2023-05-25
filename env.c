@@ -67,6 +67,7 @@ void _unsetenv(param *params)
 	char *name = params->arguments[1];
 	list_n *prevNode = NULL;
 	list_n *currNode = params->envn;
+
 	if (params->tokenCount != 2)
 	{
 		params->status = 0;
@@ -103,8 +104,9 @@ void _printenv(param *params)
 	if (params->tokenCount != 1)
 	{
 		char error_message[100];
-		int length = snprintf(error_message, sizeof(error_message), "env: %s: No such file or directory\n",
-		params->arguments[1]);
+		int length = snprintf(error_message,
+			sizeof(error_message), "env: %s: No such file or directory\n",
+				params->arguments[1]);
 		write(STDOUT_FILENO, error_message, length);
 		params->status = 2;
 		return;
@@ -125,8 +127,12 @@ void printEnvList(list_n *head)
 		if (head->string)
 		{
 			char buffer[256];
-			int len = snprintf(buffer, sizeof(buffer), "%s=%s\n", head->string, head->value);
-			
+			int len = snprintf(buffer,
+				sizeof(buffer),
+					"%s=%s\n",
+						head->string,
+							head->value);
+
 			write(STDOUT_FILENO, buffer, len);
 		}
 	}

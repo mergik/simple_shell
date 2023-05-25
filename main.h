@@ -64,7 +64,7 @@ typedef struct parameters
 
 /**
  * struct current_operation - a buildin function
- * @name: buildin name
+ * @cmd: builtin command
  * @func: pointer to buildin function
  */
 typedef struct current_operation

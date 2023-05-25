@@ -16,11 +16,19 @@ This is our implementation of a simple command-line interpreter written in C.
 |  `main.c` | Our shell entry point                         |
 |  `parameters.c` | Initialize parameters struct and allocated required memory |
 |  `inputs.c`   | Process the input strings into tokens     |
-|  `mystrcat.c` | concatenate two strings                   |
-|  `mystrcmp.c` | compare two strings                       |
-|  `mystrcpy.c` | copy a string from source to destination  |
-|  `mystrdup.c` | duplicate a string                        |
-|  `mystrlen.c` | calculate the length of a string          |
+|  `lists.c`   | Handle Linked lists                        |
+|  `env.c`     | Get, set, unset, & print environment variables |
+|  `execute.c`   | Execute commands                         |
+|  `builtins.c` | Handle built-in commands                  |
+|  `printError.c` | Print error message to standard output  |
+|  `searchPath` | Searches for executable from PATH         |
+|  `mystrcat.c` | Concatenate two strings                   |
+|  `mystrcmp.c` | Compare two strings                       |
+|  `mystrcpy.c` | Copy a string from source to destination  |
+|  `mystrdup.c` | Duplicate a string                        |
+|  `mystrlen.c` | Calculate the length of a string          |
+|  `mystrchr.c` | Searches for string character from provided string  |
+|  `mystrtok.c` | Tokenizes strings                         |
 
 ## List of allowed functions and system calls
 
@@ -57,4 +65,4 @@ This is our implementation of a simple command-line interpreter written in C.
 -   `write` (man 2 write)
 
 ---
-## LAST UPDATE: MAY 2023
+## LAST UPDATE: 25TH MAY 2023
