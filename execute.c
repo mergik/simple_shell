@@ -16,7 +16,6 @@ void execute(param *params)
 		builtIn(params);
 		return;
 	}
-
 	command = searchPath(params);
 	if (!command)
 		return;
@@ -27,7 +26,10 @@ void execute(param *params)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
+	{
 		execve(command, params->arguments, NULL);
+		perror("execve failed");
+	}
 	else
 	{
 		wait(&params->status);

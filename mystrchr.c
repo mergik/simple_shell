@@ -4,7 +4,6 @@
  * _strchr - searches for the first occurrence of the character provided
  * @str: string to be scanned
  * @character: character to be searched
- *
  * Return: pointer to the first occurrence of the character or 0
  */
 char *_strchr(char *str, char character)

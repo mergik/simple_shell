@@ -9,30 +9,39 @@
  */
 list_n *addNodeList(list_n **head, char *str, char *value)
 {
-    list_n *node = malloc(sizeof(list_n));
-    if (node == NULL)
-        return NULL;
-    
-    node->string = _strdup(str);
-    node->length = _strlen(node->string);
-    node->value = _strdup(value);
-    node->valueLength = _strlen(value);
-    node->nextNode = *head;
-    *head = node;
+	list_n *node = malloc(sizeof(list_n));
 
-return node;
+	if (node == NULL)
+		return (NULL);
+
+	node->string = _strdup(str);
+	node->length = _strlen(node->string);
+	node->value = _strdup(value);
+	node->valueLength = _strlen(value);
+	node->nextNode = *head;
+	*head = node;
+
+	return (node);
 }
 
+/**
+ * getNodeList - search for a node
+ * @head: start of the list
+ * @str: string key
+ * Return: current or NULL if fail
+ */
 list_n *getNodeList(list_n *head, char *str)
 {
-    list_n *current = head;
-    while (current != NULL)
-    {
-        if (!_strcmp(current->string, str))
-            break;
-        current = current->nextNode;
-    }
+	list_n *current = head;
 
-return current;
+	if (!head)
+		return (NULL);
+	while (current != NULL)
+	{
+		if (!_strcmp(current->string, str))
+			break;
+		current = current->nextNode;
+	}
 
+	return (current);
 }

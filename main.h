@@ -73,7 +73,7 @@ typedef struct current_operation
 	void (*func)(param *);
 } op_t;
 
-/*function prototypes*/
+/* Function prototypes */
 param *initializeParameters(char **argv, char *env[]);
 void freeParameters(param *params);
 void freeNodeList(list_n *head);
@@ -86,20 +86,23 @@ void intToString(int value, char *str);
 list_n *addNodeList(list_n **head, char *str, char *value);
 list_n *getNodeList(list_n *head, char *str);
 void (*myBuitIns(param *params))(param *);
-void _setenv(param *params);
-void _unsetenv(param *params);
-void _printenv(param *params);
 void printEnvList(list_n *head);
 int stringToInt(char *s);
 void EXIT(param *params);
 int numValidator(char *str);
+int _isDelim(char character, char *delim);
 
 /* Prototypes of our custom functions */
 size_t _strlen(const char *str);
 char *_strdup(const char *str);
-char *_strcat(char *dest, const char *src);
+char *_strcat(char *string1, char *string2);
 char *_strcpy(char *dest, const char *src);
-int _strcmp(const char *s1, const char *s2);
+int _strcmp(char *string1, char *string2);
 char *_strchr(char *str, char character);
+char *_getenv(char *name, const param *parameters);
+void _setenv(param *params);
+void _unsetenv(param *params);
+void _printenv(param *params);
+char *_strtok(char *string, char *delim, char **state);
 
 #endif

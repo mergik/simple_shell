@@ -3,7 +3,7 @@
 char *searchPath(param *params)
 {
     char *path = NULL, *pathCopy = NULL, *fullPath = NULL, *temp = NULL;
-    char *pathToken;
+    char *pathToken, *state = NULL;
 
     if (access(params->arguments[0], F_OK | X_OK) == 0)
     {
@@ -16,14 +16,13 @@ char *searchPath(param *params)
         printError(params, "Permission denied\n");
         return NULL;
     }
-    path = getenv("PATH");
+    path = _getenv("PATH", params);
     if (!path)
     {
-        printError(params, "not found\n");
-        return NULL;
+        printError(params, "1st not found\n");
+        return (NULL);
     }
-    
-    for (pathToken = strtok(path, ":"); pathToken; pathToken = strtok(NULL, ":"))
+    for (pathToken = _strtok(path, ":", &state); pathToken; pathToken = _strtok(path, ":", &state))
     {
         temp = fullPath;
         fullPath = _strcat(pathToken, "/");
@@ -41,7 +40,7 @@ char *searchPath(param *params)
         pathCopy = _strdup(pathToken);
     }
     params->status = 127;
-    printError(params, "not found\n");
+    printError(params, "2nd not found\n");
     free(path);
     free(pathCopy);
     free(fullPath);

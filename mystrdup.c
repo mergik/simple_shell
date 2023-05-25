@@ -3,7 +3,6 @@
 /**
  * _strdup - duplicate a string
  * @str: string to be duplicated
- *
  * Return: pointer to newly-allocated space in memory containing the
  *         duplicated string, or NULL if str is NULL or if malloc fails.
  */

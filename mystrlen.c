@@ -9,6 +9,9 @@ size_t _strlen(const char *str)
 {
 	size_t length = 0;
 
+	if (str == NULL)
+		return (0);
+
 	while (*str != '\0')
 	{
 		length++;

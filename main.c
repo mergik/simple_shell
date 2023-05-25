@@ -4,6 +4,7 @@
  * main - main function
  * @argc: argument size
  * @argv: argument list
+ * @env: environment
  * Return: 0 if successful
  */
 int main(int argc, char *argv[], char *env[])
@@ -12,6 +13,7 @@ int main(int argc, char *argv[], char *env[])
 	unsigned int i;
 	param *params = NULL;
 	size_t size = MAX_COMMAND_LENGTH;
+	char *state = NULL;
 	bool interactive;
 
 	(void)argc;/*we declare argc to be unused*/
@@ -43,7 +45,7 @@ int main(int argc, char *argv[], char *env[])
 			freeParameters(params);
 			return (errStatus);
 		}
-		params->nextCommand = strtok(params->input, ";\n");
+		params->nextCommand = _strtok(params->input, ";\n", &state);
 		while (params->nextCommand)
 		{
 			params->tokenCount = parseInput(params);
@@ -57,7 +59,7 @@ int main(int argc, char *argv[], char *env[])
 			}
 			params->tokenCount = 0;
 			free(params->nextCommand);
-			params->nextCommand = strtok(NULL, ";\n");
+			params->nextCommand = _strtok(params->input, ";\n", &state);
 		}
 	}
 }
