@@ -2,9 +2,10 @@
 
 ## Description
 
-This is our implementation of a simple command-line interpreter written in C.
+This is our implementation of a simple command-line interpreter written in C. This project, known as a "simple shell", emulates basic functionalities of the Unix shell. It can handle command lines with arguments, manage the PATH, implement built-in commands, and execute external programs. The shell supports features such as environment variable manipulation, error handling, and memory management. It's designed to run on Ubuntu 20.04 LTS and is compiled using gcc with specific flags to ensure code quality and adherence to the C89 standard. This project demonstrates fundamental concepts of operating systems, process creation and management, and low-level I/O operations in C programming.
 
 ## Usage
+
 - Platform `Ubuntu 20.04`
 - Compiler `gcc`
 - Compilation `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
@@ -64,5 +65,10 @@ This is our implementation of a simple command-line interpreter written in C.
 -   `wait4` (man 2 wait4)
 -   `write` (man 2 write)
 
+## Disclaimer
+
+This is a learning project and contains many limitations and bugs. It is not intended for production use.
+
 ---
-## LAST UPDATE: 25TH MAY 2023
+## LAST UPDATE
+25TH MAY 2023
